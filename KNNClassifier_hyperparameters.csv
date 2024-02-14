@@ -1,0 +1,12 @@
+name,value
+classifier_name,KNNClassifier
+library,scikit-learn
+test_size,0.2
+algorithm,auto
+leaf_size,30
+metric,minkowski
+metric_params,None
+n_jobs,None
+n_neighbors,5
+p,2
+weights,uniform
