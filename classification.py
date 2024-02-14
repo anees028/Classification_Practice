@@ -67,16 +67,12 @@ for model_name, model in models.items():
 for model_name, result_data in results.items():
     # Save confusion matrix
     confusion_df = pd.DataFrame(result_data['confusion_matrix'], columns=sorted(y.unique()), index=sorted(y.unique()))
-    confusion_df.to_csv(f'{model_name}_confusion_matrix.csv')
+    confusion_df.to_csv(f'{model_name}_confusion_matrix.csv', index_label='Class')
 
-# Save hyperparameters to CSV files
-for model_name, clf in models.items():
+    # Save hyperparameters
     params = clf.get_params()
     with open(f'{model_name}_hyperparameters.csv', 'w') as file:
-        file.write('name,value\n')
-        file.write(f'classifier_name,{model_name}\n')
-        file.write('library,scikit-learn\n')
-        file.write('test_size,0.2\n')
+        file.write('Class,' + ','.join(sorted(y.unique())) + '\n')
         for param_name, param_value in params.items():
             file.write(f'{param_name},{param_value}\n')
 
